@@ -56,7 +56,9 @@ select a.codepays, e.sid, count(e.epid), count(a.aid) from athlete a, rangindivi
 -- question 13
 select eqid from athletesequipe group by eqid having count(*)=10;
 
-
+-- question 16
+select sid from sport where not exists (select * from epreuve e2 where not exists (select * from epreuve e3 where e3.sid=e2.sid and e3.categorie=e2.categorie));
+select sid from epreuve group by sid having count(distinct categorie)=(select count(distinct categorie from epreuve));
 /*
     Pays (codePays, nomP)
     Sport (sid, nomSp)
